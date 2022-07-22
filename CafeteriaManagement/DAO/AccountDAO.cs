@@ -32,9 +32,9 @@ namespace CafeteriaManagement.DAO
 
         public static AccountModel GetAccountByUserName(string userName)
         {
-            string query = $"SELECT * FROM Account WHERE UserName = '{ userName }'";
+            string query = $"CALL spAccount_GetByUserName( @userName )";
 
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { userName });
 
             foreach (DataRow row in data.Rows)
             {
